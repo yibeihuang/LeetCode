@@ -42,13 +42,31 @@ __author__ = 'yibeihuang'
 #         return ''.join(s)
 
 class Solution(object):
+    # def reverseWords(self, s):
+    #     """
+    #     :type s: str
+    #     :rtype: str
+    #     """
+    #     return (' '.join(s.split()[::-1]))
     def reverseWords(self, s):
-        """
-        :type s: str
-        :rtype: str
-        """
-        return (' '.join(s.split()[::-1]))
+        lsts = list(s)
+        lsts = self.ReverseW(lsts)
+        s = ''.join(lsts)
+        chunks = s.split(' ')
+        for ele in chunks:
+            ele = ''.join(self.ReverseW(list(ele)))
+        s = ' '.join(chunks)
 
-s = ' love  every day '
+    def ReverseW(self, s):
+        p1,p2 = 0, len(s)-1
+        while p1<p2:
+            s[p1],s[p2] = s[p2],s[p1]
+            p1+=1
+            p2-=1
+        return s
+
+
+s = 'a b'
 sol = Solution()
-print(sol.reverseWords(s))
+sol.reverseWords(s)
+print(s)
